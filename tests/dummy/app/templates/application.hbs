@@ -1,3 +1,7 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Ember Parsing Date Input</h2>
 
-{{outlet}}
+MyDate: {{myDate}}
+{{parsing-date-input
+	value=(moment-format myDate "YYYY-MM-DD")
+	onChange=(action (mut myDate))
+	placeholder="i.e. 1998-12-12"}}

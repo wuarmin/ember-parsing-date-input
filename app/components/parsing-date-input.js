@@ -1,0 +1,1 @@
+export { default } from 'ember-parsing-date-input/components/parsing-date-input';
