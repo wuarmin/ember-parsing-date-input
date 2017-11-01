@@ -19,7 +19,7 @@ export default Component.extend({
     return this.get('parseDateTask.isRunning');
   }),
 
-  isInvalid: computed('isValid', function() {
+  isInvalid: computed('_currentDate', function() {
     if(!this.get('_currentDate')) {
       return false;
     }

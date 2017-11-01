@@ -63,7 +63,7 @@ test('If a valid date is parsed during user input, the `onChange` action is trig
   await fillIn('.ember-parsing-date-input > input[type=text]', '1998-12-12');
 });
 
-test('During parsing a loading-css-class-indicator is added ', async function(assert) {
+test('During parsing a loading-css-class-indicator is added', async function(assert) {
   assert.expect(2);
   await this.render(hbs`
     {{parsing-date-input
@@ -77,4 +77,16 @@ test('During parsing a loading-css-class-indicator is added ', async function(as
   return wait().then(() => {
     assert.ok(!find('.ember-parsing-date-input').classList.contains('loading'), 'After date-parsing css-class `loading` is removed');
   });
+});
+
+test('If user inputs an invalid date, a invalid-css-class-indicator is added', async function(assert) {
+  assert.expect(1);
+  await this.render(hbs`
+    {{parsing-date-input
+      value='Invalid Date'}}
+  `);
+
+  await click('.ember-parsing-date-input > input[type=text]')
+  await fillIn('.ember-parsing-date-input > input[type=text]', '1998-14-12');
+  assert.ok(find('.ember-parsing-date-input').classList.contains('invalid'), 'Invalid-css-indicator is present');
 });
